@@ -1,12 +1,12 @@
 /**
  * JS Langton's Ant 1.0.0
  * Renders the Langton's Ant game
- * https://github.com/patopitaluga/langdonsant
+ * https://github.com/patopitaluga/langtons-ant
  *
  * By patricio.pitaluga@gmail.com - http://twitter.com/pato_pitaluga
  *
  * Released under the MIT license
- * http://aerolab.github.io/langdonsant.js/LICENSE.txt
+ * https://github.com/patopitaluga/langtons-ant/LICENSE.txt
  */
 'use strict';
 
