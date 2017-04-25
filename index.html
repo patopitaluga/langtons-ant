@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>JS Langton's ant</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+  </head>
+  <body>
+    <div id="langtonsAnt">
+    </div>
+    <div id="langtonsAntInfo">
+    </div>
+    <script src="script.js"></script>
+    <script>
+      let options = {
+        cols: 75,
+        rows: 49,
+        interval: 66,
+        randomBlackCell: 0,
+        containerElemId: 'langtonsAnt',
+        antsNumber: 10,
+        randomInitialPos: false,
+        dataElementId: 'langtonsAntInfo'
+      }
+      let p = new langtonsAnt(options);
+      p.init();
+    </script>
+  </body>
+</html>

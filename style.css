@@ -1,0 +1,35 @@
+body {
+  font-family: monospace;
+  font-size: 12px;
+}
+
+table {
+  border-bottom: 1px #eee solid;
+  border-collapse: collapse;
+  border-right: 1px #eee solid;
+  font-size: 11px;
+  margin: 0 auto;
+}
+
+td {
+  border-bottom: 0;
+  border-right: 0;
+  border: 1px #eee solid;
+  height: 8px;
+  line-height: 8px;
+  text-align: center;
+  width: 8px;
+}
+
+.s0 {
+  background: #eee;
+}
+
+.s1 {
+  background: #666;
+}
+
+td.ant {
+  background: red;
+}
+
