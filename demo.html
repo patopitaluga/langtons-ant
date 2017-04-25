@@ -10,20 +10,22 @@
     </div>
     <div id="langtonsAntInfo">
     </div>
-    <script src="script.js"></script>
+    <script src="jslangtonsant.js"></script>
     <script>
       let options = {
         cols: 75,
         rows: 49,
-        interval: 66,
+        timeInterval: 66,
         randomBlackCell: 0,
         containerElemId: 'langtonsAnt',
-        antsNumber: 10,
+        antsNumber: 1,
+        stepsPerCycle: 1,
         randomInitialPos: false,
+        initialDirection: 0,
         dataElementId: 'langtonsAntInfo'
       }
-      let p = new langtonsAnt(options);
-      p.init();
+      let myLangTonGame = new LangtonsAnt(options);
+      myLangTonGame.init();
     </script>
   </body>
 </html>
