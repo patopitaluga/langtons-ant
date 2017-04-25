@@ -30,19 +30,19 @@ Initiate it.
 
 ## Customizing it
 
-You can customize the behavior of the game with these options:
+You can customize its behavior with these options:
 
 ```html
 let myLangTonGame = new LangtonsAnt({
-  cols - number of columns in the matrix.
-  rows - number of rows in the matrix.
-  timeInterval - in milliseconds. Interval of time between each cycle.
-  randomBlackCell - Between 0 and 100. Percentual chance of any cell to be black.
-  containerElemId - The id of the container element for the table
-  antsNumber - The number of ants to be generated
-  stepsPerCycle - Number of steps computed for every cycle in which the render is updated.
-  randomInitialPos - If true, each ant initial position is set randomly. If false, each one starts from the middle of the matrix.
-  initialDirection - Between 0 and 3. 0 is top, 1 is right, 2 is down, 3 is left. -1 let it be randomly determined
-  dataElementId - The id of the container element for the text output
+  cols             : 75,               // number of columns in the matrix.
+  rows             : 49,               // number of rows in the matrix.
+  timeInterval     : 66,               // in milliseconds. Interval of time between each cycle.
+  randomBlackCell  : 0,                // Between 0 and 100. Percentual chance of any cell to be black.
+  containerElemId  : 'langtonsAnt',    // The id of the container element for the table
+  antsNumber       : 1,                // The number of ants to be generated
+  stepsPerCycle    : 1,                // Number of steps computed for every cycle in which the render is updated.
+  randomInitialPos : false,            // If true, each ant initial position is set randomly. If false, each one starts from the middle of the matrix.
+  initialDirection : 0,                // Between 0 and 3. 0 is top, 1 is right, 2 is down, 3 is left. -1 to let it be randomly determined
+  dataElementId    : 'langtonsAntInfo' // The id of the container element for the text output
 });
 ```

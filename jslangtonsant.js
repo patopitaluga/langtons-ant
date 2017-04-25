@@ -12,17 +12,17 @@
 
 /**
  * Renders the Langton's Ant game in an element given its id
- * @param {Object} options - function options.
- * @param {Number} options.cols - number of columns in the matrix.
- * @param {Number} options.rows - number of rows in the matrix.
- * @param {Number} options.timeInterval - in milliseconds. Interval of time between each cycle.
- * @param {Number} options.randomBlackCell - Between 0 and 100. Percentual chance of any cell to be black.
- * @param {String} options.containerElemId - The id of the container element for the table
- * @param {Number} options.antsNumber - The number of ants to be generated
- * @param {Number} options.stepsPerCycle - Number of steps computed for every cycle in which the render is updated.
+ * @param {Object}  options - function options.
+ * @param {Number}  options.cols - number of columns in the matrix.
+ * @param {Number}  options.rows - number of rows in the matrix.
+ * @param {Number}  options.timeInterval - in milliseconds. Interval of time between each cycle.
+ * @param {Number}  options.randomBlackCell - Between 0 and 100. Percentual chance of any cell to be black.
+ * @param {String}  options.containerElemId - The id of the container element for the table
+ * @param {Number}  options.antsNumber - The number of ants to be generated
+ * @param {Number}  options.stepsPerCycle - Number of steps computed for every cycle in which the render is updated.
  * @param {Boolean} options.randomInitialPos - If true, each ant initial position is set randomly. If false, each one starts from the middle of the matrix.
- * @param {Number} options.initialDirection - Between 0 and 3. 0 is top, 1 is right, 2 is down, 3 is left. -1 let it be randomly determined
- * @param {String} options.dataElementId - The id of the container element for the text output
+ * @param {Number}  options.initialDirection - Between 0 and 3. 0 is top, 1 is right, 2 is down, 3 is left. -1 to let it be randomly determined
+ * @param {String}  options.dataElementId - The id of the container element for the text output
  */
 function LangtonsAnt(options) {
   var defaults = {
