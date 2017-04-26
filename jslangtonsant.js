@@ -12,17 +12,18 @@
 
 /**
  * Renders the Langton's Ant game in an element given its id
- * @param {Object}  options - function options.
- * @param {Number}  options.cols - number of columns in the matrix.
- * @param {Number}  options.rows - number of rows in the matrix.
- * @param {Number}  options.timeInterval - in milliseconds. Interval of time between each cycle.
+ * @param {Object}  options - Function options.
+ * @param {Number}  options.cols - Number of columns in the matrix.
+ * @param {Number}  options.rows - Number of rows in the matrix.
+ * @param {Number}  options.timeInterval - In milliseconds. Interval of time between each cycle.
  * @param {Number}  options.randomBlackCell - Between 0 and 100. Percentual chance of any cell to be black.
- * @param {String}  options.containerElemId - The id of the container element for the table
- * @param {Number}  options.howManyAntsInitially - The number of ants to be generated initially
+ * @param {String}  options.containerElemId - The id of the container element for the table.
+ * @param {Number}  options.howManyAntsInitially - The number of ants to be generated initially.
  * @param {Number}  options.stepsPerCycle - Number of steps computed for every cycle in which the render is updated.
  * @param {Boolean} options.randomInitialPos - If true, each ant initial position is set randomly. If false, each one starts from the middle of the matrix.
- * @param {Number}  options.initialDirection - Between 0 and 3. 0 is top, 1 is right, 2 is down, 3 is left. -1 to let it be randomly determined
- * @param {String}  options.dataElementId - The id of the container element for the text output
+ * @param {Number}  options.initialDirection - Between 0 and 3. 0 is top, 1 is right, 2 is down, 3 is left. -1 to let it be randomly determined.
+ * @param {String}  options.dataElementId - The id of the container element for the text output.
+ * @param {Boolean} options.customStyle - Turn this true if you're using a custom css for the style.
  */
 function LangtonsAnt(options) {
   var defaults = {
@@ -35,7 +36,8 @@ function LangtonsAnt(options) {
     stepsPerCycle: 1,
     randomInitialPos: false,
     initialDirection: 0,
-    dataElementId: 'langtonsAntInfo'
+    dataElementId: 'langtonsAntInfo',
+    customStyle: false
   };
   this.options = Object.assign({}, defaults, options);
 
@@ -174,7 +176,7 @@ LangtonsAnt.prototype = {
         document.getElementById(cellWithAntId).classList.add('ant');
     });
   },
-  setCellWidth: function() {
+  setCellHeight: function() {
     if (document.getElementById('jslangtonsant-style')) {
       let elementToRemove = document.getElementById('jslangtonsant-style');
       elementToRemove.parentNode.removeChild(elementToRemove);
@@ -190,8 +192,15 @@ LangtonsAnt.prototype = {
     let self = this;
     this.paused = false;
 
+    if (!this.options.customStyle) {
+      let style = document.createElement('style');
+      style.type = 'text/css';
+      style.innerHTML = '.jslangtonsant-table{border-collapse:separate;border-spacing:1px;margin:0 auto;width:100%}.jslangtonsant-table td{border:0;margin:0;padding:0;text-align:center}.jslangtonsant-table .s0{background:#efefef}.jslangtonsant-table .s1{background:#666;opacity:.3;transition:opacity 1s linear}.jslangtonsant-table td.ant:after{background:red;border-radius:3px;content:"";display:block;height:100%;width:100%}';
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
     this.populateField(function() {
-      self.setCellWidth();
+      self.setCellHeight();
     });
     this.addAnts();
 
@@ -201,7 +210,7 @@ LangtonsAnt.prototype = {
     }, this.options.timeInterval);
 
     window.onresize = function(event) {
-      self.setCellWidth();
+      self.setCellHeight();
     };
   },
   pause: function() {
