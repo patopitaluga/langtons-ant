@@ -2,12 +2,22 @@
 
 A javascript implementation of Langton's ant game.
 
+**Check out the live demo:** https://patopitaluga.github.io/langtons-ant
+
 ## Quick start
 
-Load the **jslangtonsant.js**
+Copy the files jslangtonsant.js and jslangtonsant.css to your project folder.
+
+Load **jslangtonsant.js** in your html file.
 
 ```html
 <script src="js/jslangtonsant.js"></script>
+```
+
+Load **jslangtonsant.css** in your html file, or copy the content to your project stylesheet.
+
+```html
+<link rel="stylesheet" type="text/css" href="css/jslangtonsant.css"/>
 ```
 
 Create an element that will contain the game matrix.

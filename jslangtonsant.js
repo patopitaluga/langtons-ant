@@ -18,7 +18,7 @@
  * @param {Number}  options.timeInterval - in milliseconds. Interval of time between each cycle.
  * @param {Number}  options.randomBlackCell - Between 0 and 100. Percentual chance of any cell to be black.
  * @param {String}  options.containerElemId - The id of the container element for the table
- * @param {Number}  options.antsNumber - The number of ants to be generated
+ * @param {Number}  options.howManyAnts - The number of ants to be generated
  * @param {Number}  options.stepsPerCycle - Number of steps computed for every cycle in which the render is updated.
  * @param {Boolean} options.randomInitialPos - If true, each ant initial position is set randomly. If false, each one starts from the middle of the matrix.
  * @param {Number}  options.initialDirection - Between 0 and 3. 0 is top, 1 is right, 2 is down, 3 is left. -1 to let it be randomly determined
@@ -31,7 +31,7 @@ function LangtonsAnt(options) {
     timeInterval: 66,
     randomBlackCell: 0,
     containerElemId: 'langtonsAnt',
-    antsNumber: 1,
+    howManyAnts: 1,
     stepsPerCycle: 1,
     randomInitialPos: false,
     initialDirection: 0,
@@ -52,7 +52,7 @@ function LangtonsAnt(options) {
 
 LangtonsAnt.prototype = {
   addAnts: function() {
-    for (let r = this.options.antsNumber; r > 0; r--) {
+    for (let r = this.options.howManyAnts; r > 0; r--) {
       let initialXpos = Math.round(this.options.cols / 2);
       let initialYpos = Math.round(this.options.rows / 2);
 
@@ -68,7 +68,7 @@ LangtonsAnt.prototype = {
       });
     }
   },
-  populateField: function() {
+  populateField: function(callback) {
     let rowsHtml = '';
     for (let rowIndex = 1; rowIndex <= this.options.rows; rowIndex++) {
       let colsHtml = '';
@@ -84,13 +84,17 @@ LangtonsAnt.prototype = {
 
       rowsHtml += '<tr>' + colsHtml + '</tr>';
     }
-    document.getElementById(this.options.containerElemId).innerHTML = '<table>' + rowsHtml + '</table>';
+    document.getElementById(this.options.containerElemId).innerHTML = '<table class="jslangtonsant-table">' + rowsHtml + '</table>';
+    callback();
   },
   runAcycle: function() {
     this.cycle++;
     this.steps += this.options.stepsPerCycle;
     if (typeof this.options.dataElementId !== 'undefined') {
-      document.getElementById(this.options.dataElementId).innerHTML = 'Cycle: ' + this.cycle + ' Steps: ' + this.steps;
+      let textData = 'Cycle: ' + this.cycle;
+      if (this.cycle !== this.steps)
+        textData += ' Steps: ' + this.steps;
+      document.getElementById(this.options.dataElementId).innerHTML = textData;
     }
 
     // Calculate changes made by every ant
@@ -131,6 +135,7 @@ LangtonsAnt.prototype = {
         }
       }
     }
+
     // Update dom
     this.langAntField.forEach(function(entry, rowIndex) {
       entry.forEach(function(cellValue, cellIndex) {
@@ -142,6 +147,7 @@ LangtonsAnt.prototype = {
             currentCellInDOM.classList.remove('s1');
             currentCellInDOM.classList.add('s0');
           }
+
           if (cellValue === 1 && currentCellInDOM.classList.contains('s0')) {
             currentCellInDOM.classList.remove('s0');
             currentCellInDOM.classList.add('s1');
@@ -155,13 +161,32 @@ LangtonsAnt.prototype = {
         document.getElementById(cellWithAntId).classList.add('ant');
     });
   },
+  setCellWidth: function() {
+    let cellWidth = document.getElementById(this.options.containerElemId).getElementsByTagName('td')[0].offsetWidth;
+    let style = document.createElement('style');
+    style.id = 'jslangtonsant-style';
+    style.type = 'text/css';
+    style.innerHTML = '.jslangtonsant-table td { height: ' + cellWidth + 'px; }';
+    document.getElementsByTagName('head')[0].appendChild(style);
+  },
   init: function() {
-    this.populateField();
+    let self = this;
+    this.paused = false;
+
+    this.populateField(function() {
+      self.setCellWidth();
+    });
     this.addAnts();
 
-    let self = this;
     setInterval(function() {
-      self.runAcycle();
+      if (!self.paused)
+        self.runAcycle();
     }, this.options.timeInterval);
+
+    window.onresize = function(event) {
+    };
+  },
+  pause: function() {
+    this.paused = !this.paused;
   }
 };
