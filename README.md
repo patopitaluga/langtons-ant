@@ -49,7 +49,7 @@ let myLangTonGame = new LangtonsAnt({
   timeInterval     : 66,               // in milliseconds. Interval of time between each cycle.
   randomBlackCell  : 0,                // Between 0 and 100. Percentual chance of any cell to be black.
   containerElemId  : 'langtonsAnt',    // The id of the container element for the table
-  antsNumber       : 1,                // The number of ants to be generated
+  howManyAnts      : 1,                // The number of ants to be generated
   stepsPerCycle    : 1,                // Number of steps computed for every cycle in which the render is updated.
   randomInitialPos : false,            // If true, each ant initial position is set randomly. If false, each one starts from the middle of the matrix.
   initialDirection : 0,                // Between 0 and 3. 0 is top, 1 is right, 2 is down, 3 is left. -1 to let it be randomly determined
