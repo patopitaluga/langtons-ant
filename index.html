@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>JS Langton's ant</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="jslangtonsant.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container__bg">
+        <h1>JS Langton's ant</h1>
+
+        <p>A javascript implementation of the Langton's ant game. Learn all about it in: <a href="https://en.wikipedia.org/wiki/Langton%27s_ant" target="_blank">https://en.wikipedia.org/wiki/Langton%27s_ant</a></p>
+        <p>Github: <a href="https://github.com/patopitaluga/langtons-ant" target="_blank">https://github.com/patopitaluga/langtons-ant</a></p>
+        <p>By: Pato Pitaluga &lt;patricio.pitaluga@gmail.com&gt;</p>
+        <div id="langtonsAnt">
+        </div>
+        <div id="langtonsAntInfo">
+        </div>
+        <button onclick="myLangTonGame.pause()">Pause / Play</button>
+      </div>
+    </div>
+    <script src="jslangtonsant.js"></script>
+    <script>
+      let options = {
+        cols: 90,
+        rows: 39,
+        timeInterval: 66,
+        randomBlackCell: 0,
+        containerElemId: 'langtonsAnt',
+        howManyAnts: 1,
+        stepsPerCycle: 1,
+        randomInitialPos: false,
+        initialDirection: 0,
+        dataElementId: 'langtonsAntInfo'
+      }
+      let myLangTonGame = new LangtonsAnt(options);
+      myLangTonGame.init();
+    </script>
+  </body>
+</html>

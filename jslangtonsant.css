@@ -1,0 +1,32 @@
+.jslangtonsant-table {
+  border-collapse: separate;
+  border-spacing: 1px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.jslangtonsant-table td {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.jslangtonsant-table .s0 {
+  background: #efefef;
+}
+
+.jslangtonsant-table .s1 {
+  background: #666;
+  opacity: .3;
+  transition: opacity 1s linear;
+}
+
+.jslangtonsant-table td.ant:after {
+  background: #ff0000;
+  border-radius: 3px;
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+}
