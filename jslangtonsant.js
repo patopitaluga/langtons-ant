@@ -38,7 +38,6 @@ function LangtonsAnt(options) {
     dataElementId: 'langtonsAntInfo'
   };
   this.options = Object.assign({}, defaults, options);
-  console.log(this.options);
 
   // initial direction -1 for random
   if (this.options.initialDirection === -1) {
@@ -97,7 +96,11 @@ LangtonsAnt.prototype = {
     // Calculate changes made by every ant
     for (let stepIndex = this.options.stepsPerCycle; stepIndex >= 0; stepIndex--) {
       for (let antIndex = this.ants.length - 1; antIndex >= 0; antIndex--) {
-        if (this.langAntField[this.ants[antIndex].posY][this.ants[antIndex].posX] == 0) {
+        if (typeof this.langAntField[this.ants[antIndex].posY] === 'undefined') {
+          this.langAntField[this.ants[antIndex].posY] = [];
+          this.langAntField[this.ants[antIndex].posY][this.ants[antIndex].posX] = 0;
+        }
+        if (this.langAntField[this.ants[antIndex].posY][this.ants[antIndex].posX] === 0) {
           // At a white square, turn 90° right, flip the color of the square, move forward one unit
           this.ants[antIndex].direction += 1;
           if (this.ants[antIndex].direction === 4) this.ants[antIndex].direction = 0;
@@ -135,11 +138,11 @@ LangtonsAnt.prototype = {
         if (document.getElementById(currentCellInDOMId)) {
           let currentCellInDOM = document.getElementById(currentCellInDOMId);
           currentCellInDOM.classList.remove('ant'); // Every ant change its position
-          if (cellValue == 0 && currentCellInDOM.classList.contains('s1')) {
+          if (cellValue === 0 && currentCellInDOM.classList.contains('s1')) {
             currentCellInDOM.classList.remove('s1');
             currentCellInDOM.classList.add('s0');
           }
-          if (cellValue == 1 && currentCellInDOM.classList.contains('s0')) {
+          if (cellValue === 1 && currentCellInDOM.classList.contains('s0')) {
             currentCellInDOM.classList.remove('s0');
             currentCellInDOM.classList.add('s1');
           }
