@@ -162,6 +162,10 @@ LangtonsAnt.prototype = {
     });
   },
   setCellWidth: function() {
+    if (document.getElementById('jslangtonsant-style')) {
+      let elementToRemove = document.getElementById('jslangtonsant-style');
+      elementToRemove.parentNode.removeChild(elementToRemove);
+    }
     let cellWidth = document.getElementById(this.options.containerElemId).getElementsByTagName('td')[0].offsetWidth;
     let style = document.createElement('style');
     style.id = 'jslangtonsant-style';
@@ -184,6 +188,7 @@ LangtonsAnt.prototype = {
     }, this.options.timeInterval);
 
     window.onresize = function(event) {
+      self.setCellWidth();
     };
   },
   pause: function() {
